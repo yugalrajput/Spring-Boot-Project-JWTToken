@@ -23,6 +23,25 @@ public class UserForm extends BaseForm {
 
     private Date dob;
 
+    private Long roleId;
+    private String roleName;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
     public UserForm() {
 
     }
@@ -68,7 +87,7 @@ public class UserForm extends BaseForm {
     }
 
 
-    public BaseDTO getDto(){
+    public BaseDTO getDto() {
 
         UserDTO dto = new UserDTO();
         dto.setFirstName(firstName);

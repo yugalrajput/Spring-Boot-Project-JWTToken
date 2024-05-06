@@ -64,7 +64,7 @@ public class LoginCtl extends BaseCtl {
         dto.setLoginId(form.getLoginId());
         dto.setPassword(form.getPassword());
         dto.setDob(form.getDob());
-        //dto.setRoleId(2L);
+        dto.setRoleId(2L);
 
         long pk = service.add(dto);
 

@@ -26,7 +26,7 @@ public abstract class BaseDTO implements DropDownList {
 
     @Override
     public String getKey() {
-        return "";
+        return id + "";
     }
 
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import com.rays.service.RoleServiceInt;
 import com.rays.service.UserServiceInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -32,9 +33,12 @@ import com.rays.form.UserForm;
 public class UserCtl extends BaseCtl {
 
     @Autowired
+    public RoleServiceInt roleService;
+
+    @Autowired
     public UserServiceInt userService;
 
-   /* @GetMapping("preload")
+    @GetMapping("preload")
     public ORSResponse preload() {
 
         ORSResponse res = new ORSResponse();
@@ -45,7 +49,7 @@ public class UserCtl extends BaseCtl {
 
         return res;
 
-    }*/
+    }
 
     @PostMapping("save")
     public ORSResponse save(@RequestBody @Valid UserForm form, BindingResult bindingResult) {
@@ -59,10 +63,12 @@ public class UserCtl extends BaseCtl {
         UserDTO dto = (UserDTO) form.getDto();
 
         if (dto.getId() != null && dto.getId() > 0) {
+            dto.setRoleId(form.getRoleId());
             userService.update(dto);
             res.addData(dto.getId());
             res.addMessage("Data Updated Successfully..!!");
         } else {
+            dto.setRoleId(form.getRoleId());
             long pk = userService.add(dto);
             res.addData(pk);
             res.addMessage("Data added Successfully..!!");
